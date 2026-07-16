@@ -1,9 +1,9 @@
-package datameshmanager.snowflake;
+package entropydata.snowflake;
 
-import datameshmanager.sdk.DataMeshManagerAssetsProvider;
-import datameshmanager.sdk.client.model.Asset;
-import datameshmanager.sdk.client.model.AssetColumnsInner;
-import datameshmanager.sdk.client.model.AssetInfo;
+import entropydata.sdk.EntropyDataAssetsProvider;
+import entropydata.sdk.client.model.Asset;
+import entropydata.sdk.client.model.AssetColumnsInner;
+import entropydata.sdk.client.model.AssetInfo;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,7 +19,7 @@ import snowflake.client.model.schema.SchemaInfo;
 import snowflake.client.model.table.Table;
 import snowflake.client.model.view.View;
 
-public class SnowflakeAssetsProvider implements DataMeshManagerAssetsProvider {
+public class SnowflakeAssetsProvider implements EntropyDataAssetsProvider {
 
   private static final Logger log = LoggerFactory.getLogger(SnowflakeAssetsProvider.class);
 
