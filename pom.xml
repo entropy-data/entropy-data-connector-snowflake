@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.5</version>
+		<version>4.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-    <groupId>com.datamesh-manager</groupId>
-	<artifactId>datamesh-manager-connector-snowflake</artifactId>
+    <groupId>com.entropy-data</groupId>
+	<artifactId>entropy-data-connector-snowflake</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>datamesh-manager-connector-snowflake</name>
-	<description>Data Mesh Manager Connector for Snowflake Integration</description>
+	<name>entropy-data-connector-snowflake</name>
+	<description>Entropy Data Connector for Snowflake Integration</description>
 
 	<dependencies>
 
@@ -25,9 +25,9 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.datamesh-manager</groupId>
-			<artifactId>datamesh-manager-sdk</artifactId>
-			<version>0.0.3</version>
+			<groupId>com.entropy-data</groupId>
+			<artifactId>entropy-data-sdk</artifactId>
+			<version>0.1.2</version>
 		</dependency>
     <dependency>
       <groupId>com.auth0</groupId>

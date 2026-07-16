@@ -1,10 +1,10 @@
-package datameshmanager.snowflake;
+package entropydata.snowflake;
 
 import java.io.File;
 import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "datameshmanager.client.snowflake")
+@ConfigurationProperties(prefix = "entropydata.client.snowflake")
 public record SnowflakeProperties(
     String account,
     String user,
