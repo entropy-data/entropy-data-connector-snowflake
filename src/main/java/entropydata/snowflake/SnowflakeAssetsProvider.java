@@ -2,7 +2,7 @@ package entropydata.snowflake;
 
 import entropydata.sdk.EntropyDataAssetsProvider;
 import entropydata.sdk.client.model.Asset;
-import entropydata.sdk.client.model.AssetColumnsInner;
+import entropydata.sdk.client.model.AssetColumn;
 import entropydata.sdk.client.model.AssetInfo;
 import java.util.List;
 import java.util.Objects;
@@ -138,7 +138,7 @@ public class SnowflakeAssetsProvider implements EntropyDataAssetsProvider {
 
     if (table.getColumns() != null) {
       for (var column : table.getColumns()) {
-        asset.addColumnsItem(new AssetColumnsInner()
+        asset.addColumnsItem(new AssetColumn()
             .name(column.getName())
             .type(column.getDatatype())
             .description(column.getComment()));
@@ -174,7 +174,7 @@ public class SnowflakeAssetsProvider implements EntropyDataAssetsProvider {
 
     if (view.getColumns() != null) {
       for (var column : view.getColumns()) {
-        asset.addColumnsItem(new AssetColumnsInner()
+        asset.addColumnsItem(new AssetColumn()
             .name(column.getName())
             .type(column.getDatatype())
             .description(column.getComment()));
