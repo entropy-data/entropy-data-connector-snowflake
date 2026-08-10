@@ -55,16 +55,24 @@ public class Application {
     return entropyDataEventListener;
   }
 
+  @Bean
+  @ConditionalOnProperty(value = "entropydata.client.snowflake.assets.enabled", havingValue = "true")
+  public AssetsSynchronizationHealth assetsSynchronizationHealth(SnowflakeProperties snowflakeProperties) {
+    return new AssetsSynchronizationHealth(snowflakeProperties.assets().pollinterval());
+  }
+
   @Bean(destroyMethod = "stop")
   @ConditionalOnProperty(value = "entropydata.client.snowflake.assets.enabled", havingValue = "true")
   public EntropyDataAssetsSynchronizer entropyDataAssetsSynchronizer(
       SnowflakeProperties snowflakeProperties,
       EntropyDataClient client,
       ApiClient snowflakeApiClient,
+      AssetsSynchronizationHealth assetsSynchronizationHealth,
       TaskExecutor taskExecutor) {
     var connectorId = snowflakeProperties.assets().connectorid();
     var assetsProvider = new SnowflakeAssetsProvider(snowflakeProperties, snowflakeApiClient);
-    var entropyDataAssetsSynchronizer = new EntropyDataAssetsSynchronizer(connectorId, client, assetsProvider);
+    var entropyDataAssetsSynchronizer = new EntropyDataAssetsSynchronizer(connectorId, client,
+        assetsSynchronizationHealth.wrap(assetsProvider));
     if (snowflakeProperties.assets().pollinterval() != null) {
       entropyDataAssetsSynchronizer.setDelay(snowflakeProperties.assets().pollinterval());
     }

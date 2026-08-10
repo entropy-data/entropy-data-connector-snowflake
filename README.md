@@ -115,6 +115,19 @@ Setting `JAVA_TOOL_OPTIONS` at runtime **replaces** these flags rather than addi
 
 Expect the container to use around 60% of its memory limit under load. Adjust memory alarms accordingly.
 
+### Synchronization Health
+
+The health endpoint reports whether the asset synchronization is still up to date:
+
+```
+curl http://localhost:8080/actuator/health
+```
+
+The `assetsSynchronizationHealth` component reports `DEGRADED` when the last run failed, or when no run has succeeded for three
+poll intervals, and names the failure in `lastFailure`. It is deliberately not reported as `DOWN`, and the endpoint still responds
+with 200, because the usual cause is an unavailable data platform, which restarting the container does not fix. Point liveness
+probes at `/actuator/health/liveness`, which is unaffected by the synchronization state.
+
 ## Access Management Flow
 
 When an Access Request has been approved by the data product owner, and the start date is reached, Entropy Data will publish an `AccessActivatedEvent`. When an end date is defined and reached, Entropy Data will publish an `AccessDeactivatedEvent`. The connector listens for these events and grants access to the data consumer in Snowflake.
